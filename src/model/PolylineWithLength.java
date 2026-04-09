@@ -1,36 +1,45 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/** Ломаная линия с вычислением длины */
 public class PolylineWithLength {
     private List<Point> points;
 
+    /** Конструктор: пустая ломаная */
     public PolylineWithLength() {
         this.points = new ArrayList<>();
     }
 
+    /** Конструктор: ломаная из списка точек */
     public PolylineWithLength(List<Point> points) {
         this.points = new ArrayList<>(points);
     }
 
+    /** Возвращает копию списка точек */
     public List<Point> getPoints() {
         return new ArrayList<>(points);
     }
 
+    /** Добавляет точку */
     public void addPoint(Point point) {
         points.add(point);
     }
 
+    /** Добавляет точку по координатам */
     public void addPoint(double x, double y) {
         points.add(new Point(x, y));
     }
 
-    // Один метод для добавления точек (массив, список или переменное число)
+    // FIX_ME: не было метода для добавления нескольких точек
+    /** Добавляет несколько точек  */
     public void addPoints(Point... newPoints) {
         points.addAll(Arrays.asList(newPoints));
     }
 
-    // Вычисление длины ломаной
+    /** Возвращает общую длину ломаной */
     public double getLength() {
         if (points.size() < 2) {
             return 0.0;
@@ -47,6 +56,7 @@ public class PolylineWithLength {
         return length;
     }
 
+    /** Возвращает строку: "Линия [Т1,Т2,...]" */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Линия [");

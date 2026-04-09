@@ -1,26 +1,34 @@
+package validation;
+
 import java.util.Scanner;
 
+/** Валидатор ввода данных с консоли */
 public class InputValidator {
-    private Scanner scanner;
+    // FIX_ME: в поле scanner не было final
+    // старый код: private Scanner scanner;
+    private final Scanner scanner;
 
+    /** Конструктор: принимает Scanner */
     public InputValidator(Scanner scanner) {
         this.scanner = scanner;
     }
 
+    /** Возвращает целое число */
     public int getValidInt(String prompt) {
         while (true) {
             try {
                 System.out.print(prompt);
                 int value = scanner.nextInt();
-                scanner.nextLine(); // очистка буфера
+                scanner.nextLine();
                 return value;
             } catch (Exception e) {
                 System.out.println("Ошибка! Введите целое число.");
-                scanner.nextLine(); // очистка неверного ввода
+                scanner.nextLine();
             }
         }
     }
 
+    /** Возвращает целое число в диапазоне [min, max] */
     public int getValidIntInRange(String prompt, int min, int max) {
         while (true) {
             int value = getValidInt(prompt);
@@ -31,20 +39,22 @@ public class InputValidator {
         }
     }
 
+    /** Возвращает число double */
     public double getValidDouble(String prompt) {
         while (true) {
             try {
                 System.out.print(prompt);
                 double value = scanner.nextDouble();
-                scanner.nextLine(); // очистка буфера
+                scanner.nextLine();
                 return value;
             } catch (Exception e) {
                 System.out.println("Ошибка! Введите число.");
-                scanner.nextLine(); // очистка неверного ввода
+                scanner.nextLine();
             }
         }
     }
 
+    /** Возвращает непустую строку */
     public String getNonEmptyString(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -56,6 +66,7 @@ public class InputValidator {
         }
     }
 
+    /** Возвращает выбор задачи (0-6) */
     public int getValidChoice() {
         return getValidIntInRange("Выберите задачу (0-6): ", 0, 6);
     }

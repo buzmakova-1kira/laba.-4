@@ -1,7 +1,8 @@
 import java.util.Scanner;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
+import model.*;
+import validation.InputValidator;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class Main {
             }
 
             switch (choice) {
-                //ЗАДАНИЕ 1
+                // ЗАДАНИЕ 1.3 - ИМЕНА
                 case 1:
                     System.out.println("\n=== ЗАДАЧА 1.3 - ИМЕНА ===");
 
@@ -47,17 +48,15 @@ public class Main {
                     String middleNameFull = validator.getNonEmptyString("Введите отчество: ");
                     Name nameFull = new Name(lastNameFull, firstNameFull, middleNameFull);
                     System.out.println("Результат: " + nameFull);
-
                     break;
 
-                //ЗАДАНИЕ 2
+                // ЗАДАНИЕ 2.2 - ЧЕЛОВЕК С ИМЕНЕМ
                 case 2:
                     System.out.println("\n=== ЗАДАЧА 2.2 - ЧЕЛОВЕК С ИМЕНЕМ ===");
 
                     System.out.println("\nСоздание человека с объектом Имя:");
 
-                    System.out.println("\n1. Создание имени для человека:");
-                    System.out.println("Выберите тип имени:");
+                    System.out.println("\nВыберите тип имени:");
                     System.out.println("1 - Только имя");
                     System.out.println("2 - Фамилия и имя");
                     System.out.println("3 - Полное имя (ФИО)");
@@ -84,14 +83,13 @@ public class Main {
                     }
 
                     int personHeight = validator.getValidIntInRange("Введите рост (см): ", 50, 250);
-                    Person person = new Person(personName, personHeight);
+                    PersonSimple person = new PersonSimple(personName, personHeight);
 
                     System.out.println("\n--- Результат ---");
                     System.out.println(person);
-
                     break;
 
-                //ЗАДАНИЕ 3
+                // ЗАДАНИЕ 2.3 - ЧЕЛОВЕК С РОДИТЕЛЕМ
                 case 3:
                     System.out.println("\n=== ЗАДАЧА 2.3 - ЧЕЛОВЕК С РОДИТЕЛЕМ ===");
 
@@ -115,11 +113,6 @@ public class Main {
                     int grandsonHeight = validator.getValidIntInRange("Введите рост внука (см): ", 50, 250);
                     Person grandsonPerson = new Person(new Name(grandsonFirstName), grandsonHeight);
 
-                    /*System.out.println("\n--- До установки родственных связей ---");
-                    System.out.println("Отец: " + fatherPerson);
-                    System.out.println("Сын: " + sonPerson);
-                    System.out.println("Внук: " + grandsonPerson);*/
-
                     sonPerson.setFather(fatherPerson);
                     grandsonPerson.setFather(sonPerson);
 
@@ -127,10 +120,9 @@ public class Main {
                     System.out.println("Отец: " + fatherPerson);
                     System.out.println("Сын: " + sonPerson);
                     System.out.println("Внук: " + grandsonPerson);
-
                     break;
 
-                //ЗАДАНИЕ 4
+                // ЗАДАНИЕ 3.2 - ЛОМАНАЯ
                 case 4:
                     System.out.println("\n=== ЗАДАЧА 3.2 - ЛОМАНАЯ ===");
 
@@ -156,11 +148,11 @@ public class Main {
                     line2.addPoint(firstPoint);
                     System.out.println("Добавлена первая точка из первой ломаной: " + firstPoint);
 
-                    int middlePoints = validator.getValidIntInRange("Сколько промежуточных точек для второй ломаной? ", 1, 5);
+                    int middlePoints = validator.getValidIntInRange("Сколько промежуточных точек? ", 1, 5);
                     for (int i = 0; i < middlePoints; i++) {
-                        System.out.println("\nПромежуточная точка " + (i + 1) + " для второй ломаной:");
-                        double x = validator.getValidDouble("Введите координату X: ");
-                        double y = validator.getValidDouble("Введите координату Y: ");
+                        System.out.println("\nПромежуточная точка " + (i + 1) + ":");
+                        double x = validator.getValidDouble("Введите X: ");
+                        double y = validator.getValidDouble("Введите Y: ");
                         line2.addPoint(new Point(x, y));
                     }
 
@@ -180,10 +172,9 @@ public class Main {
                     System.out.println("\nРезультат после сдвига:");
                     System.out.println("Первая ломаная: " + line1);
                     System.out.println("Вторая ломаная: " + line2);
-
                     break;
 
-                //ЗАДАНИЕ 5
+                // ЗАДАНИЕ 4.9 - СОЗДАЕМ ЛОМАНУЮ
                 case 5:
                     System.out.println("\n=== ЗАДАЧА 4.9 - СОЗДАЕМ ЛОМАНУЮ ===");
 
@@ -191,7 +182,7 @@ public class Main {
                     Polyline emptyLine = new Polyline();
                     System.out.println("Пустая ломаная: " + emptyLine);
 
-                    int pointsToAdd = validator.getValidIntInRange("Сколько точек добавить в пустую ломаную? ", 1, 10);
+                    int pointsToAdd = validator.getValidIntInRange("Сколько точек добавить? ", 1, 10);
                     for (int i = 0; i < pointsToAdd; i++) {
                         System.out.println("\nТочка " + (i + 1) + ":");
                         double x = validator.getValidDouble("Введите X: ");
@@ -201,11 +192,11 @@ public class Main {
                     System.out.println("Ломаная после добавления: " + emptyLine);
 
                     System.out.println("\n2. Создание ломаной с готовым набором точек:");
-                    int predefinedPointsCount = validator.getValidIntInRange("Сколько точек создать для готовой ломаной? ", 2, 10);
-                    java.util.List<Point> predefinedPoints = new java.util.ArrayList<>();
+                    int predefinedPointsCount = validator.getValidIntInRange("Сколько точек создать? ", 2, 10);
+                    List<Point> predefinedPoints = new ArrayList<>();
 
                     for (int i = 0; i < predefinedPointsCount; i++) {
-                        System.out.println("\nТочка " + (i + 1) + " для готовой ломаной:");
+                        System.out.println("\nТочка " + (i + 1) + ":");
                         double x = validator.getValidDouble("Введите X: ");
                         double y = validator.getValidDouble("Введите Y: ");
                         predefinedPoints.add(new Point(x, y));
@@ -213,10 +204,9 @@ public class Main {
 
                     Polyline predefinedLine = new Polyline(predefinedPoints);
                     System.out.println("Ломаная с предустановленными точками: " + predefinedLine);
-
                     break;
 
-                //ЗАДАНИЕ 6
+                // ЗАДАНИЕ 5.7 - ДЛИНА ЛОМАНОЙ
                 case 6:
                     System.out.println("\n=== ЗАДАЧА 5.7 - ДЛИНА ЛОМАНОЙ ===");
 
@@ -225,7 +215,7 @@ public class Main {
                     PolylineWithLength line = new PolylineWithLength();
 
                     System.out.println("Создание начальной ломаной:");
-                    int initialPoints = validator.getValidIntInRange("Сколько точек в начальной ломаной? ", 2, 10);
+                    int initialPoints = validator.getValidIntInRange("Сколько точек в ломаной? ", 2, 10);
 
                     for (int i = 0; i < initialPoints; i++) {
                         System.out.println("\nТочка " + (i + 1) + ":");
@@ -238,7 +228,7 @@ public class Main {
                     System.out.println("Длина ломаной: " + String.format("%.2f", line.getLength()));
 
                     System.out.println("\nДобавление новых точек:");
-                    int additionalPoints = validator.getValidIntInRange("Сколько дополнительных точек добавить? ", 1, 5);
+                    int additionalPoints = validator.getValidIntInRange("Сколько точек добавить? ", 1, 5);
 
                     for (int i = 0; i < additionalPoints; i++) {
                         System.out.println("\nДополнительная точка " + (i + 1) + ":");
@@ -249,7 +239,6 @@ public class Main {
 
                     System.out.println("\nЛоманая после добавления: " + line);
                     System.out.println("Новая длина ломаной: " + String.format("%.2f", line.getLength()));
-
                     break;
 
                 default:
