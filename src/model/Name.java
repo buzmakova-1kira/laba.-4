@@ -55,7 +55,7 @@ public class Name {
         this.middleName = middleName;
     }
 
-    // FIX_ME: была конкатенация строк через +=
+    // FIX_ME: было объединение строк через +=
     // старый код:
     // @Override
     // public String toString() {

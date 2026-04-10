@@ -8,19 +8,23 @@ public class PersonSimple {
     private int height;
 
     /** Конструктор: имя (Name) + рост */
-    // FIX_ME: не было пробелов после запятых
-    // старый код: public PersonSimple(Name name,int height)
+    // FIX_ME: поле name должно быть типа Name
+    // старый код:  public PersonSimple(String name, int height) {
     public PersonSimple(Name name, int height) {
         this.name = name;
         this.height = height;
     }
 
     /** Возвращает имя */
+    //FIX_ME: должно быть типа Name
+    // старый код: public String getName() {
     public Name getName() {
         return name;
     }
 
     /** Устанавливает имя */
+    //FIX_ME: должно быть типа Name
+    // старый код: public void setName(String name) {
     public void setName(Name name) {
         this.name = name;
     }

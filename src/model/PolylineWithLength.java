@@ -33,7 +33,6 @@ public class PolylineWithLength {
         points.add(new Point(x, y));
     }
 
-    // FIX_ME: не было метода для добавления нескольких точек
     /** Добавляет несколько точек  */
     public void addPoints(Point... newPoints) {
         points.addAll(Arrays.asList(newPoints));

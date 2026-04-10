@@ -56,12 +56,12 @@ public class Person {
     // FIX_ME: не было пробелов после if
     // старый код:
     // private void inheritFromFather() {
-    //     if (father != null) {
-    //         if ((name.getLastName() == null || name.getLastName().isEmpty())
+    //     if(father != null) {
+    //         if((name.getLastName() == null || name.getLastName().isEmpty())
     //                 && father.name.getLastName() != null) {
     //             name.setLastName(father.name.getLastName());
     //         }
-    //         if ((name.getMiddleName() == null || name.getMiddleName().isEmpty())
+    //         if((name.getMiddleName() == null || name.getMiddleName().isEmpty())
     //                 && father.name.getFirstName() != null) {
     //             name.setMiddleName(father.name.getFirstName() + "ович");
     //         }
